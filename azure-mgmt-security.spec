@@ -4,7 +4,7 @@
 #
 Name     : azure-mgmt-security
 Version  : 0.3.0
-Release  : 1
+Release  : 2
 URL      : https://files.pythonhosted.org/packages/bd/ea/96ac8bdc6033f2ee14e918abd3f4b9b0911e976478468b6bee7b721161a2/azure-mgmt-security-0.3.0.zip
 Source0  : https://files.pythonhosted.org/packages/bd/ea/96ac8bdc6033f2ee14e918abd3f4b9b0911e976478468b6bee7b721161a2/azure-mgmt-security-0.3.0.zip
 Summary  : Microsoft Azure Security Center Management Client Library for Python
@@ -63,7 +63,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1588707524
+export SOURCE_DATE_EPOCH=1588794513
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -82,6 +82,9 @@ python3 -tt setup.py build  install --root=%{buildroot}
 echo ----[ mark ]----
 cat %{buildroot}/usr/lib/python3*/site-packages/*/requires.txt || :
 echo ----[ mark ]----
+## Remove excluded files
+rm -f %{buildroot}/usr/lib/python3.8/site-packages/azure/mgmt/__init__.py
+rm -f %{buildroot}/usr/lib/python3.8/site-packages/azure/mgmt/__pycache__/__init__.cpython-38.pyc
 
 %files
 %defattr(-,root,root,-)
